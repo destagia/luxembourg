@@ -19,6 +19,14 @@ class Board:
                     sum += 1
         return sum
 
+    def get_empty_points(self):
+        points = []
+        for row_index in range(0, len(self.__board)):
+            for col_index in range(0, len(self.__board[row_index])):
+                if self.__board[row_index][col_index] == None:
+                    points.append((row_index, col_index))
+        return points
+
     def show(self):
         for row in self.__board:
             for player in row:
