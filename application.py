@@ -5,8 +5,9 @@ from luxembourg.board import Board
 
 # Command line game
 
-board = Board()
-players = [ControllPlayer('1'), AiPlayer(board)]
+board = Board(10)
+# players = [ControllPlayer('1'), AiPlayer(board)]
+players = [AiPlayer(board, 'C'), AiPlayer(board, 'P')]
 judge = Judge(board)
 index = 0
 while not judge.is_finished():

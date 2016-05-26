@@ -2,14 +2,10 @@ from functools import reduce
 
 class Board:
 
-    def __init__(self):
-        self.__board = [
-            [None],
-            [None, None],
-            [None, None, None],
-            [None, None, None, None],
-            [None, None, None, None, None]
-        ]
+    def __init__(self, depth):
+        self.__board = []
+        for row_count in range(1, depth + 1):
+            self.__board.append([None for _ in range(0, row_count)])
 
     def get_none_count(self):
         sum = 0
