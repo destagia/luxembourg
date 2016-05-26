@@ -40,5 +40,7 @@ class Board:
             r = [(from_row + x, from_col + x) for x in range(0, to_row - from_row + 1)]
 
         for (row, col) in r:
+            if self.__board[row][col] != None:
+                raise RuntimeError('there has been already player')
             self.__board[row][col] = player
 
