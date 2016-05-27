@@ -2,10 +2,21 @@ from functools import reduce
 
 class Board:
 
-    def __init__(self, depth):
+    def __init__(self, depth=None, board=None, tag='main'):
+        self.__tag = tag
         self.__board = []
-        for row_count in range(1, depth + 1):
-            self.__board.append([None for _ in range(0, row_count)])
+
+        if board != None:
+            for row in board.__board:
+                self.__board.append([value for value in row])
+        elif depth != None:
+            for row_count in range(1, depth + 1):
+                self.__board.append([None for _ in range(0, row_count)])
+        else:
+            raise RuntimeError('Invalide initialization of Board')
+
+    def get_tag(self):
+        return self.__tag
 
     def get_none_count(self):
         sum = 0
@@ -24,6 +35,7 @@ class Board:
         return points
 
     def show(self):
+        print('=======================')
         for row in self.__board:
             for player in row:
                 if player == None:
@@ -31,6 +43,7 @@ class Board:
                 else:
                     print(player.get_symbol(), end='')
             print('')
+        print('=======================')
 
     def draw_line(self, player, from_row, from_col, to_row, to_col):
         if from_row > to_row or from_col > to_col:
