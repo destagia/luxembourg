@@ -18,7 +18,7 @@ for no in range(0, 100):
         player = players[index]
         (fx, fy, tx, ty) = player.get_line()
         try:
-            board.draw_line(player, fx, fy, tx, ty)
+            board.dragit w_line(player, fx, fy, tx, ty)
         except RuntimeError as error:
             print(error)
             board.show()

@@ -2,7 +2,7 @@ from functools import reduce
 
 class Board:
 
-    def __init__(self, depth=None, board=None, tag='main'):
+    def __init__(self, depth=None, board=None, hash=None, tag='main'):
         self.__tag = tag
         self.__board = []
 
@@ -12,6 +12,13 @@ class Board:
         elif depth != None:
             for row_count in range(1, depth + 1):
                 self.__board.append([None for _ in range(0, row_count)])
+            if hash != None:
+                for value in hash:
+                    print(value)
+                    print(value['y'])
+                    print(value['x'])
+                    print(value['value'])
+                    self.__board[value['y']][value['x']] = value['value']
         else:
             raise RuntimeError('Invalide initialization of Board')
 
