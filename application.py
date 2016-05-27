@@ -7,7 +7,7 @@ from luxembourg.board import Board
 
 count = 0
 
-for no in range(0, 10):
+for no in range(0, 100):
     board = Board(depth=5)
     cpu = AiPlayer(board, 'P')
     # players = [ControllPlayer('1'), AiPlayer(board)]

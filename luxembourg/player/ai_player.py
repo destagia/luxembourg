@@ -23,16 +23,17 @@ class AiPlayer:
         board = self.__board
         candidates = []
 
-        for (sx, sy, ex, ey) in self.__get_all_forwards(board):
+        for (start_x, start_y, end_x, end_y) in self.__get_all_forwards(board):
             win_count = 0
             stub_board = Board(board=board, tag='stub')
             self.__board = stub_board
-            stub_board.draw_line(self, sx, sy, ex, ey)
-            start = (sx, sy)
+            stub_board.draw_line(self, start_x, start_y, end_x, end_y)
+            start = (start_x, start_y)
 
             points_count = len(self.__board.get_empty_points())
+            epoc_count =  (15 - points_count) * 100
             if points_count > 1:
-                for _ in range(0, (15 - points_count) * 100):
+                for _ in range(0, epoc_count):
                     self.__board = Board(board=stub_board, tag='test' + str(_))
                     for player in self.__player_selector(self.__board):
                         (sx, sy, ex, ey) = player.__get_random_line()
@@ -42,10 +43,10 @@ class AiPlayer:
                     if player == self:
                         win_count = win_count + 1
             elif points_count == 1:
-                win_count = (15 - points_count) * 100
+                win_count = epoc_count
             else:
                 win_count = 0
-            candidates.append(((sx, sy, ex, ey), win_count))
+            candidates.append(((start_x, start_y, end_x, end_y), win_count))
 
         self.__board = board
         candidates.sort(key=lambda candidate: -candidate[1])
