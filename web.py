@@ -1,9 +1,16 @@
 from bottle import route, run, template, post, get
 from bottle import request
 from bottle import response
+from bottle import static_file
 from luxembourg.player.ai_player import AiPlayer
 from luxembourg.board import Board
 import json
+
+@route('/public/<filepath:path>')
+
+@route('/public/<filepath:path>', name='static_file')
+def static(filepath):
+    return static_file(filepath, root="./public")
 
 @route('/')
 def index():

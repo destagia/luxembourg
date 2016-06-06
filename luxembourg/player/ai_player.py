@@ -86,14 +86,16 @@ class AiPlayer:
         forward = random.choice(self.__forwards)
         advancer = self.__get_forward_func(forward)
 
+        end_candidates = []
         for _ in range(0, len(start_points) - 1):
             end = candidate
+            end_candidates.append(end)
             (end_x, end_y) = end
             candidate = advancer(end_x, end_y)
             if not candidate in start_points:
                 break
-            if random.randint(0, 100) < 20:
-                break
+
+        end = random.choice(end_candidates)
 
         ((start_x, start_y), (end_x, end_y)) = (start, end)
         return (start_x, start_y, end_x, end_y)

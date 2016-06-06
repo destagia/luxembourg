@@ -1,0 +1,4 @@
+lastone:
+  build: .
+  ports:
+    - '40007:8080'
