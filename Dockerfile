@@ -7,4 +7,6 @@ EXPOSE 8080
 
 WORKDIR /root
 
-CMD ['python', 'web.py']
+RUN python setup.py install
+
+CMD ["python", "web.py"]
