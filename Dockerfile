@@ -9,4 +9,6 @@ WORKDIR /root
 
 RUN python setup.py install
 
+ENV BOTTLE_HOST 0.0.0.0
+
 CMD ["python", "web.py"]

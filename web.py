@@ -5,6 +5,7 @@ from bottle import static_file
 from luxembourg.player.ai_player import AiPlayer
 from luxembourg.board import Board
 import json
+import os
 
 @route('/public/<filepath:path>')
 
@@ -28,4 +29,11 @@ def luxembourg():
         'end': { 'x': ey, 'y': ex }
     })
 
-run(host='localhost', port=8080, debug=True, reloader=True)
+HOST     = os.environ.get("BOTTLE_HOST",     'localhost')
+PORT     = os.environ.get("BOTTLE_PORT",     8080)
+DEBUG    = os.environ.get("BOTTLE_DEBUG",    True)
+RELOADER = os.environ.get("BOTTLE_RELOADER", True)
+
+print("[info] host: {0}, port: {1}".format(HOST, PORT))
+
+run(host=HOST, port=PORT, debug=DEBUG, reloader=RELOADER)
