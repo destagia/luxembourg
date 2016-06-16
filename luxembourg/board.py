@@ -49,7 +49,7 @@ class Board:
 
     def show(self):
         """
-        Show current board state to stdout
+        Show current board state to stdout like below
                 |
               B   |
             |   B   |
