@@ -9,9 +9,11 @@ class Board:
         self.__board = []
 
         if board != None:
+            self.__depth = len(board.__board)
             for row in board.__board:
                 self.__board.append([value for value in row])
         elif depth != None:
+            self.__depth = depth
             for row_count in range(1, depth + 1):
                 self.__board.append([None for _ in range(0, row_count)])
             if hash != None:
@@ -48,16 +50,26 @@ class Board:
     def show(self):
         """
         Show current board state to stdout
+                |
+              B   |
+            |   B   |
+          |   |   |   |
+        A   A   |   A   A
         """
-        print('=======================')
+        print('')
+        row_index = 0
         for row in self.__board:
+            for _ in range(0, (self.__depth - 1 - row_index)):
+                print('  ', end='')
             for player in row:
                 if player == None:
-                    print('.', end='')
+                    print('|', end='')
                 else:
                     print(player.get_symbol(), end='')
+                print('   ', end='')
             print('')
-        print('=======================')
+            row_index += 1
+        print('')
 
     def draw_line(self, player, line):
         if not isinstance(line, Line):

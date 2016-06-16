@@ -11,8 +11,8 @@ count = 0
 for no in range(0, 100):
     board = Board(depth=5)
     players = [
-        MonteCarloAiPlayer(board, 'A'),
-        RandomAiPlayer(board, 'B')
+        RandomAiPlayer(board, 'B'),
+        MonteCarloAiPlayer(board, 'A')
     ]
     judge = Judge(board)
     index = 0
