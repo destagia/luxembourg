@@ -13,7 +13,7 @@ setup(
     license="MIT",
     author="Shohei Miyashita",
     packages=find_packages(),
-    install_requires=['bottle'],
+    install_requires=['bottle', 'chainer'],
     long_description=long_description,
     classifiers=[
         "Programming Language :: Python",
