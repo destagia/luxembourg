@@ -30,6 +30,12 @@ class Board:
         return sum
 
     def get_empty_points(self):
+        """
+        Return all empty point in this board
+        Empty means that the array value is None
+
+        :return: Array of all empty points
+        """
         points = []
         for row_index in range(0, len(self.__board)):
             for col_index in range(0, len(self.__board[row_index])):
@@ -38,6 +44,9 @@ class Board:
         return points
 
     def show(self):
+        """
+        Show current board state to stdout
+        """
         print('=======================')
         for row in self.__board:
             for player in row:
@@ -48,15 +57,20 @@ class Board:
             print('')
         print('=======================')
 
-    def draw_line(self, player, from_row, from_col, to_row, to_col):
-        if from_row > to_row or from_col > to_col:
-            raise RuntimeError('from position must be smaller than to position')
+    def draw_line(self, player, line):
+        from_row = line.get_start().get_x()
+        from_col = line.get_start().get_y()
+        to_row   = line.get_end().get_x()
+        to_col   = line.get_end().get_y()
 
         if from_row == to_row:
+            # Veritcal line
             r = [(from_row, col) for col in range(from_col, to_col + 1)]
         elif from_col == to_col:
+            # Horizontal line
             r = [(row, from_col) for row in range(from_row, to_row + 1)]
         else:
+            # Lean line
             r = [(from_row + x, from_col + x) for x in range(0, to_row - from_row + 1)]
 
         for (row, col) in r:

@@ -34,6 +34,7 @@ PORT     = os.environ.get("BOTTLE_PORT",     8080)
 DEBUG    = os.environ.get("BOTTLE_DEBUG",    True)
 RELOADER = os.environ.get("BOTTLE_RELOADER", True)
 
+print("Start Application 🏰")
 print("[info] host: {0}, port: {1}".format(HOST, PORT))
 
 run(host=HOST, port=PORT, debug=DEBUG, reloader=RELOADER)

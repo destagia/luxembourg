@@ -1,8 +1,14 @@
 from luxembourg.board import Board
+from luxembourg.line  import Line
+from luxembourg.point import Point
 
 import random
 
 class AiPlayer:
+    """
+    CPU with Monte Carlo Approximation
+    """
+
     HORIZONTAL = 'horizontal'
     VERTICAL = 'vertical'
     DIAGONAL = 'diagonal'
@@ -54,9 +60,15 @@ class AiPlayer:
         return candidates[0][0]
 
     def __get_all_forwards(self, board):
+        """
+        Calculate and get all candidates which can be drawn
+
+        :param board: Board object is required where the lines can be drawn
+        :return     : Iterator of lines (use this with for syntax)
+        """
         points = board.get_empty_points()
         for start in points:
-            yield (start[0], start[1], start[0], start[1])
+            yield Line(Point(start[0], start[1]), Point(start[0], start[1]))
             for forward in self.__forwards:
                 advancer = self.__get_forward_func(forward)
                 end = start
@@ -65,7 +77,7 @@ class AiPlayer:
                     if not end in points:
                         break
                     if start[0] != end[0] or start[1] != end[1]:
-                        yield (start[0], start[1], end[0], end[1])
+                        yield Line(Point(start[0], start[1]), Point(end[0], end[1]))
 
 
     def __player_selector(self, board):
