@@ -2,7 +2,7 @@ from bottle import route, run, template, post, get
 from bottle import request
 from bottle import response
 from bottle import static_file
-from luxembourg.player.ai_player import AiPlayer
+from luxembourg.player.montec_ai_player import MonteCarloAiPlayer
 from luxembourg.board import Board
 import json
 import os
@@ -34,7 +34,7 @@ PORT     = os.environ.get("BOTTLE_PORT",     8080)
 DEBUG    = os.environ.get("BOTTLE_DEBUG",    True)
 RELOADER = os.environ.get("BOTTLE_RELOADER", True)
 
-print("Start Application 🏰")
+print("Start Application")
 print("[info] host: {0}, port: {1}".format(HOST, PORT))
 
 run(host=HOST, port=PORT, debug=DEBUG, reloader=RELOADER)

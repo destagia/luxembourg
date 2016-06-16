@@ -1,3 +1,5 @@
+from luxembourg.point import Point
+from luxembourg.line import Line
 from functools import reduce
 
 class Board:
@@ -58,6 +60,9 @@ class Board:
         print('=======================')
 
     def draw_line(self, player, line):
+        if not isinstance(line, Line):
+            raise RuntimeError('line arguments must be a Line')
+
         from_row = line.get_start().get_x()
         from_col = line.get_start().get_y()
         to_row   = line.get_end().get_x()

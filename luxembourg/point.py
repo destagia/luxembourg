@@ -5,7 +5,7 @@ class Point:
         self.__y = y
 
     def __eq__(self, other):
-        return isintance(other, Point) and self.get_x() == other.get_x() and self.get_y() == other.get_y()
+        return isinstance(other, Point) and self.get_x() == other.get_x() and self.get_y() == other.get_y()
 
     def get_x(self):
         return self.__x

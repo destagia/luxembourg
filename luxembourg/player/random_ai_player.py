@@ -14,10 +14,12 @@ class RandomAiPlayer:
     DIAGONAL = 'diagonal'
 
     def __init__(self, board, symbol):
-        self.__simple = simple
         self.__board = board
         self.__symbol = symbol
         self.__forwards = [self.HORIZONTAL, self.VERTICAL, self.DIAGONAL]
+
+    def get_board(self):
+        return self.__board
 
     def get_symbol(self):
         return self.__symbol
@@ -41,15 +43,15 @@ class RandomAiPlayer:
         for _ in range(0, len(start_points) - 1):
             end = candidate
             end_candidates.append(end)
-            candidate = advancer(end.get_x(), end.get_y())
+            candidate = advancer(end)
             if not candidate in start_points:
                 break
 
         end = random.choice(end_candidates)
-        return Point(start, end)
+        return Line(start, end)
 
-    def get_forawrds(self):
-        return self.forwards
+    def get_forwards(self):
+        return self.__forwards
 
     def get_forward_func(self, forward):
         if forward == self.HORIZONTAL:

@@ -18,15 +18,15 @@ for no in range(0, 100):
     index = 0
     while not judge.is_finished():
         player = players[index]
-        (fx, fy, tx, ty) = player.get_line()
+        line = player.get_line()
         try:
-            board.draw_line(player, fx, fy, tx, ty)
+            board.draw_line(player, line)
         except RuntimeError as error:
             print(error)
             board.show()
             continue
         board.show()
         index = (index + 1) % 2
-    if player == cpu:
+    if index == 0:
         count += 1
     print(str(count) + " / " + str(no + 1))

@@ -13,10 +13,8 @@ class MonteCarloAiPlayer(RandomAiPlayer):
     def __init__(self, board, symbol):
         RandomAiPlayer.__init__(self, board, symbol)
 
-    def get_symbol(self):
-        return self.__symbol
-
     def get_line(self):
+        board = self.get_board()
         candidates = []
 
         for line in self.__get_all_forwards(board):
@@ -57,16 +55,16 @@ class MonteCarloAiPlayer(RandomAiPlayer):
         """
         points = board.get_empty_points()
         for start in points:
-            yield Line(Point(start[0], start[1]), Point(start[0], start[1]))
+            yield Line(start, start)
             for forward in self.get_forwards():
                 advancer = self.get_forward_func(forward)
                 end = start
                 while True:
-                    end = advancer(end[0], end[1])
+                    end = advancer(end)
                     if not end in points:
                         break
-                    if start[0] != end[0] or start[1] != end[1]:
-                        yield Line(Point(start[0], start[1]), Point(end[0], end[1]))
+                    if start != end:
+                        yield Line(start, end)
 
     def player_selector(player_a, player_b):
         """
