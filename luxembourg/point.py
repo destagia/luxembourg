@@ -4,11 +4,14 @@ class Point:
         self.__x = x
         self.__y = y
 
+    def __eq__(self, other):
+        return isintance(other, Point) and self.get_x() == other.get_x() and self.get_y() == other.get_y()
+
     def get_x(self):
-        self.__x
+        return self.__x
 
     def get_y(self):
-        self.__y
+        return self.__y
 
     def to_dict(self):
-        { x: self.__x, y: self.__y }
+        return { x: self.__x, y: self.__y }

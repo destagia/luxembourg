@@ -10,13 +10,13 @@ class Line:
         self.__end   = end
 
     def get_start(self):
-        self.__start
+        return self.__start
 
     def get_end(self):
-        self.__end
+        return self.__end
 
     def to_dict(self):
-        {
+        return {
             start: self.__start.to_dict(),
             end:   self.__end.to_dict()
         }

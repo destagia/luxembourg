@@ -40,7 +40,7 @@ class Board:
         for row_index in range(0, len(self.__board)):
             for col_index in range(0, len(self.__board[row_index])):
                 if self.__board[row_index][col_index] == None:
-                    points.append((row_index, col_index))
+                    points.append(Point(row_index, col_index))
         return points
 
     def show(self):
