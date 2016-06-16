@@ -9,6 +9,11 @@ class Line:
         self.__start = start
         self.__end   = end
 
+    def __str__(self):
+        return str(self.__start) + ' -> ' + str(self.__end)
+
+    __repr__ = __str__
+
     def get_start(self):
         return self.__start
 

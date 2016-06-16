@@ -7,6 +7,11 @@ class Point:
     def __eq__(self, other):
         return isinstance(other, Point) and self.get_x() == other.get_x() and self.get_y() == other.get_y()
 
+    def __str__(self):
+        return "(" + str(self.__x) + ", " + str(self.__y) + ")"
+
+    __repr__ = __str__
+
     def get_x(self):
         return self.__x
 
