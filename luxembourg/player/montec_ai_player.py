@@ -29,7 +29,7 @@ class MonteCarloAiPlayer(RandomAiPlayer):
                     epoc_board = Board(board=stub_board)
                     enemy_player = RandomAiPlayer(epoc_board, 'enemy')
                     me_player    = RandomAiPlayer(epoc_board, self.get_symbol())
-                    for player in MonteCarloAiPlayer.player_selector(enemy_player, me_player):
+                    for player in self.player_selector(enemy_player, me_player):
                         next_line = player.get_line()
                         epoc_board.draw_line(player, next_line)
                         if len(epoc_board.get_empty_points()) == 1:
@@ -66,7 +66,7 @@ class MonteCarloAiPlayer(RandomAiPlayer):
                     if start != end:
                         yield Line(start, end)
 
-    def player_selector(player_a, player_b):
+    def player_selector(self, player_a, player_b):
         """
         Return Interator which returns other player subsequently
         Inifinite Array [player_a, player_b, player_a, ...]
