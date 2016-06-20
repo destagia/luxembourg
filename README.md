@@ -2,17 +2,38 @@
 
 ## Requirement
 
-- Python 2.7.* (I use Python 2.7.6, but other minor version may cause no problem)
+- Python 2.7.8+ (I use Python 2.7.10, but other minor version may cause no problem)
 
-## Dependence
+Less than 2.7.6 can not works at all!  
+(Installing dependency will not be successful)
 
-- Chainer 1.9.1
-- Bottle 0.12.9
+## Dependency
 
-All dependency will be installed with `setup.py`, executing the following command.
+- bottle 0.12.9
+- chainer 1.9.1
+- filelock 2.0.6
+- nose 1.3.7
+- numpy 1.11.0
+- protobuf 2.6.1
+- six 1.10.0
+
+All dependency will be installed with `requirements.txt`, executing the following command.
 
 ```shell
-$ pip install 
+$ pip install -r requirements.txt
+```
+
+### Recommend
+
+To avoid disrupting your environment, using **Virtualenv** is better.
+
+```shell
+$ pip install virtualenv
+$ cd /path/to/luxembourg
+$ virtualenv env # env is a conventional name. name whatever you want!
+$ source ./env/bin/activate
+(env) $ pip install -r requirements.txt
+(env) $ pip list -l # above-mentioned requirements will be displayed up!
 ```
 
 ## Monte Carlo AI
