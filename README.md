@@ -2,11 +2,12 @@
 
 ## Requirement
 
-- Python 2.7.* (I use Python 2.7.11, other minor version may be no problem)
+- Python 2.7.* (I use Python 2.7.6, but other minor version may cause no problem)
 
 ## Dependence
 
-- Chainer
+- Chainer 1.9.1
+- Bottle 0.12.9
 
 All dependency will be installed with `setup.py`, executing the following command.
 
@@ -14,7 +15,12 @@ All dependency will be installed with `setup.py`, executing the following comman
 $ python setup.py install
 ```
 
-## DQN AI
+## Monte Carlo AI
+
+AI with Monte carlo approximation
+
+
+## Deep Q-Network AI
 
 I provide AI which use DQN, Deep Q-Network.
 
