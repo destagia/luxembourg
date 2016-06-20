@@ -47,6 +47,10 @@ class Board:
                     points.append(Point(row_index, col_index))
         return points
 
+
+    def print_newline():
+        puts('')
+
     def show(self):
         """
         Show current board state to stdout like below
@@ -56,7 +60,7 @@ class Board:
           |   |   |   |
         A   A   |   A   A
         """
-        print('')
+        print_newline()
         row_index = 0
         for row in self.__board:
             for _ in range(0, (self.__depth - 1 - row_index)):
@@ -69,7 +73,7 @@ class Board:
                 print('   ', end='')
             print('')
             row_index += 1
-        print('')
+        print_newline()
 
     def draw_line(self, player, line):
         if not isinstance(line, Line):
