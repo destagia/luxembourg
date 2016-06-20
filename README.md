@@ -12,7 +12,7 @@
 All dependency will be installed with `setup.py`, executing the following command.
 
 ```shell
-$ python setup.py install
+$ pip install 
 ```
 
 ## Monte Carlo AI
