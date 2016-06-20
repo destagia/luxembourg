@@ -50,6 +50,6 @@ This AI (Agent in the DQN statement) works as follows.
     2. AI returns line to draw (Action) by considering with above board's state
     3. Environment get it, modify state with it, and return Reward to AI
 
-# Reference
+## Reference
 
 - [DQN-chainer](https://github.com/ugo-nama-kun/DQN-chainer)
