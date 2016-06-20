@@ -1,13 +1,13 @@
-FROM python:3.5
+FROM python:2.7.10
 MAINTAINER Shohei Miyashita <shohei.miyashita.212@gmail.com>
 
-ADD ./ /root
+ADD ../ /root
 
 EXPOSE 8080
 
 WORKDIR /root
 
-RUN python setup.py install
+RUN python -r requirements.txt install
 
 ENV BOTTLE_HOST 0.0.0.0
 
