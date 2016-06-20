@@ -5,7 +5,7 @@
 - Python 2.7.8+ (I use Python 2.7.10, but other minor version may cause no problem)
 
 Less than 2.7.6 can not works at all!  
-(Installing dependency will not be successful)
+(Installing the dependencies will not be successful)
 
 ## Dependency
 
@@ -17,7 +17,7 @@ Less than 2.7.6 can not works at all!
 - protobuf 2.6.1
 - six 1.10.0
 
-All dependency will be installed with `requirements.txt`, executing the following command.
+All dependencies will be installed with `requirements.txt`, executing the following command.
 
 ```shell
 $ pip install -r requirements.txt
@@ -39,7 +39,6 @@ $ source ./env/bin/activate
 ## Monte Carlo AI
 
 AI with Monte carlo approximation
-
 
 ## Deep Q-Network AI
 
