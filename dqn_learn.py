@@ -1,17 +1,7 @@
 #!/usr/bin/env python
 
-from luxembourg.player import ControllPlayer
-
-# h = Hoge()
-# h.hoge()
-
-# Command line game
-"""
-
-from luxembourg.judge import Judge
-from luxembourg.board import Board
-from luxembourg.player.dqn_ai_player    import DqnAiPlayer
-from luxembourg.player.random_ai_player import RandomAiPlayer
+from luxembourg        import Judge, Board
+from luxembourg.player import RandomAiPlayer, DqnAiPlayer
 
 count = 0
 
@@ -37,4 +27,3 @@ for no in range(0, 100):
     if index == 0:
         count += 1
     print(str(count) + " / " + str(no + 1))
-"""

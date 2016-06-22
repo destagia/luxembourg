@@ -219,11 +219,31 @@ class DqnAiPlayer:
     AI created with DQN (Deep Q-Network)
     In the context of DQN, this is what so called Agent
     """
+
     policyFrozen = False
 
-    def __init__(self):
+    def __distinct(acc, x):
+        if not x in acc:
+            acc.append(x)
+        return acc
+
+    POINTS = [(x, y) for x in range(0, 5) for y in range(0, 5) if x >= y]
+
+    LINES = reduce(__distinct, [set([x, y]) for x in range(0, 15) for y in range(0, 15)], [])
+    LINES = map(lambda x: list(x) + list(x) if len(x) == 1 else sorted(list(x)), LINES)
+    LINES = map(lambda x: Line(POINTS[x][0], POINTS[x][1]), LINES)
+
+    def __init__(self, symbol, board):
         self.epsilon = 1.0
         self.dqn = DQN(n_act=225)
+        self.__symbol = symbol
+        self.__board  = board
+
+    def get_line(self):
+        return 0
+
+    def get_symbol(self):
+        return self.__symbol
 
     def start(self, observation):
         """
@@ -313,9 +333,3 @@ class DqnAiPlayer:
         serializers.save_npz('network/model.model', self.dqn.model)
         serializers.save_npz('network/model_target.model', self.dqn.model_target)
         print("------------ Networks were SAVED ---------------")
-
-    def get_line(self):
-        return 0
-
-    def get_symbol(self):
-        return 0
