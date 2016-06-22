@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
-from luxembourg.judge  import Judge
-from luxembourg.board  import Board
+from luxembourg        import Judge, Board
 from luxembourg.player import RandomAiPlayer, MonteCarloAiPlayer
 
 # Command line game
