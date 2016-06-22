@@ -13,6 +13,7 @@ Less than 2.7.6 can not works at all!
 - chainer 1.9.1
 - filelock 2.0.6
 - nose 1.3.7
+- matplotlib 1.5.1
 - numpy 1.11.0
 - protobuf 2.6.1
 - six 1.10.0

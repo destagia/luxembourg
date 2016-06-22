@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 from luxembourg.player.montec_ai_player import MonteCarloAiPlayer
 from luxembourg.player.random_ai_player import RandomAiPlayer
 from luxembourg.player.controll_player  import ControllPlayer
