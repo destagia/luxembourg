@@ -4,10 +4,8 @@ from chainer import Chain
 import copy
 import pickle
 import numpy             as np
-import scipy.misc        as spm
 import chainer.functions as F
 import chainer.links     as L
-import matplotlib.pyplot as plt
 
 from luxembourg.board import Board
 

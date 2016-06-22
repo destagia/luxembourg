@@ -8,7 +8,6 @@ class ControllPlayer:
     def __init__(self, symbol):
         """
         Initialize ControllPlayer
-
         :param symbol: String for identifying each player
         """
         self.__symbol = symbol
@@ -16,7 +15,6 @@ class ControllPlayer:
     def get_symbol(self):
         """
         Get player's symbol to identify
-
         :return: Symbol which is passed when initializing
         """
         return self.__symbol
