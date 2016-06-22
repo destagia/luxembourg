@@ -1,6 +1,5 @@
 from luxembourg.point import Point
 from luxembourg.line import Line
-from functools import reduce
 
 class Board:
 
@@ -24,6 +23,19 @@ class Board:
 
     def get_tag(self):
         return self.__tag
+
+    def get_as_array(self):
+        array = []
+        for y in range(0, 5):
+            row_array = []
+            row = self.__board[y]
+            for x in range(0, 5):
+                if len(row) > x + 1:
+                    row_array.append(1.0 if row[x] else 0.0)
+                else:
+                    row_array.append(0.0)
+            array.append(row_array)
+        return array
 
     def get_none_count(self):
         sum = 0
@@ -73,6 +85,7 @@ class Board:
             row_index += 1
         print('')
 
+
     def draw_line(self, player, line):
         if not isinstance(line, Line):
             raise RuntimeError('line arguments must be a Line')
@@ -95,5 +108,6 @@ class Board:
         for (row, col) in r:
             if self.__board[row][col] != None:
                 raise RuntimeError('there has been already player')
+        for (row, col) in r:
             self.__board[row][col] = player
 

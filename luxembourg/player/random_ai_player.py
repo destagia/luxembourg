@@ -18,6 +18,9 @@ class RandomAiPlayer:
         self.__symbol = symbol
         self.__forwards = [self.HORIZONTAL, self.VERTICAL, self.DIAGONAL]
 
+    def reset(self, board):
+        self.__board = board
+
     def get_board(self):
         return self.__board
 
@@ -33,6 +36,11 @@ class RandomAiPlayer:
         :return: random line (which can be drawn)
         """
         start_points = self.__board.get_empty_points()
+        if len(start_points) == 0:
+            raise RuntimeError("No start points are available!")
+
+        if len(start_points) == 1:
+            return Line(start_points[0], start_points[0])
         start        = random.choice(start_points)
         end          = start
         candidate    = start

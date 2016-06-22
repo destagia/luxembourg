@@ -5,15 +5,22 @@ from luxembourg.player import RandomAiPlayer, DqnAiPlayer
 
 count = 0
 
-for no in range(0, 100):
+players = [
+    RandomAiPlayer(None, 'B'),
+    DqnAiPlayer(None, 'A')
+]
+
+for no in range(0, 10000000):
     board = Board(depth=5)
-    players = [
-        RandomAiPlayer(board, 'B'),
-        MonteCarloAiPlayer(board, 'A')
-    ]
     judge = Judge(board)
+
+    print("- - Start New Game - -")
+
+    for p in players:
+        p.reset(board)
+
     index = 0
-    while not judge.is_finished():
+    while board.get_none_count() > 0:
         player = players[index]
         line = player.get_line()
         try:
@@ -24,6 +31,7 @@ for no in range(0, 100):
             continue
         board.show()
         index = (index + 1) % 2
+
     if index == 0:
         count += 1
     print(str(count) + " / " + str(no + 1))

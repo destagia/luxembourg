@@ -5,6 +5,7 @@ class Line:
 
     def __init__(self, start, end):
         if start.get_x() > end.get_x() or start.get_y() > end.get_y():
+            print(str(start) + ' -> ' + str(end))
             raise RuntimeError('from position must be smaller than to position')
         self.__start = start
         self.__end   = end
