@@ -15,12 +15,11 @@ class ActionValue(Chain):
         http://docs.chainer.org/en/stable/reference/links.html#convolution2d
         """
         super(ActionValue, self).__init__(
-            l1=F.Convolution2D(1,  32, ksize=3, pad=1, nobias=False, wscale=np.sqrt(2)),
-            l2=F.Convolution2D(32, 64, ksize=3, pad=1, nobias=False, wscale=np.sqrt(2)),
-            l3=F.Convolution2D(64, 64, ksize=3, pad=1, nobias=False, wscale=np.sqrt(2)),
-            l4=F.Linear(1600, 512),
-            q_value=F.Linear(512, n_act,
-                             initialW=(1.0 * np.random.randn(n_act, 512).astype(np.float32))))
+            l1=F.Linear(15, 1000),
+            l2=F.Linear(1000, 1000),
+            l3=F.Linear(1000, 1000),
+            l4=F.Linear(1000, 1000),
+            q_value=F.Linear(1000, n_act))
 
     def q_function(self, state):
         """
