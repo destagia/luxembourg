@@ -29,7 +29,7 @@ for no in range(0, 10000000):
             print(error)
             board.show()
             continue
-        board.show()
+        # board.show()
         index = (index + 1) % 2
 
     if index == 0:
