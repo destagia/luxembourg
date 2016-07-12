@@ -50,6 +50,12 @@ class DqnAiPlayer:
         self.__episode = 0
         self.__board = board
 
+    def on_lost_game(self):
+        pass
+
+    def on_won_game(self):
+        pass
+        
     def get_line(self):
         self.__episode = self.__episode or 0
 

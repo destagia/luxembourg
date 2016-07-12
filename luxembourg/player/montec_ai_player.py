@@ -46,6 +46,12 @@ class MonteCarloAiPlayer(RandomAiPlayer):
         print(candidates)
         return candidates[0][0]
 
+    def on_lost_game(self):
+        pass
+
+    def on_won_game(self):
+        pass
+
     def __get_all_forwards(self, board):
         """
         Calculate and get all candidates which can be drawn

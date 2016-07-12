@@ -19,6 +19,15 @@ class ControllPlayer:
         """
         return self.__symbol
 
+    def reset(self, board):
+        pass
+        
+    def on_lost_game(self):
+        pass
+
+    def on_won_game(self):
+        pass
+
     def get_line(self):
         """
         Get the next line for the game

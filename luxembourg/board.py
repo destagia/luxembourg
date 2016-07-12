@@ -24,6 +24,9 @@ class Board:
     def get_tag(self):
         return self.__tag
 
+    def get_as_single_array(self):
+        return reduce(lambda acc, x: acc + x, self.__board)
+
     def get_as_array(self):
         array = []
         for y in range(0, 5):

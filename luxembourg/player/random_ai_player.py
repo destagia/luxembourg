@@ -26,6 +26,12 @@ class RandomAiPlayer:
 
     def get_symbol(self):
         return self.__symbol
+    
+    def on_lost_game(self):
+        pass
+
+    def on_won_game(self):
+        pass
 
     def get_line(self):
         """
