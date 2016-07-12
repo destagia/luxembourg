@@ -33,15 +33,28 @@ class PolicyNetwork:
 
         return action, probabilities
 
+    def learn_with_diff(self, probabilities, true_data):
+        p_len = len(probabilities.data[0])
+        t_len = len(true_data)
+        if p_len != t_len:
+            raise RuntimeError('length is invalid : probabilities=' + str(p_len) + ", true_data=" + str(t_len))
+        self.__function.zerograds()
+        y = probabilities
+        t = Variable(np.asarray([true_data]).astype(np.float32))
+        print("y")
+        print(y.data)
+        print("true")
+        print(t.data)
+        print((y - t).debug_print())
+        print((y - t).data)
+        loss = F.relu(y - t)
+        print(loss.debug_print())
+        loss.backward()
+        print("DEBUG")
+        print(loss.debug_print())
+        # self.__optimizer.update()
 
-    def learn(self, probabilities, true_data):
-        x = probabilities
+    def learn_with_cross_entropy(self, probabilities, true_data):
+        y = probabilities
         t = Variable(np.asarray(true_data).astype(np.int32))
-        self.__optimizer.update(F.softmax_cross_entropy, x, t)
-
-class PolicyLossFunction:
-    def __call__(self, x, t):
-        loss = Variable(np.abs(t.data - x.data))
-        # print("loss 1")
-        # print(loss.data)
-        return loss
+        self.__optimizer.update(F.softmax_cross_entropy, y, t)

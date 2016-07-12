@@ -41,7 +41,9 @@ class PolicyAiPlayer:
                 print(action)
                 stub_board.draw_line(self, selected_line)
             except:
-                self.network.learn(probabilities, [random.randint(0, 74)])
+                true_data = copy.copy(probabilities.data)[0]
+                true_data[action] = 0.0
+                self.network.learn_with_diff(probabilities, true_data)
                 continue
             break
 
@@ -54,11 +56,13 @@ class PolicyAiPlayer:
 
     def on_lost_game(self):
         for data in self.__history:
-            self.network.learn(data.probabilities, [data.action])
+            true_data = copy.copy(probabilities.data)[0]
+            true_data[action] = 0.0
+            self.network.learn_with_diff(probabilities, true_data)
 
     def on_won_game(self):
         for data in self.__history:
-            self.network.learn(data.probabilities, [data.action])
+            self.network.learn_with_cross_entropy(data.probabilities, [data.action])
 
     def __create_lines(self):
         points = [Point(x, y) for x in range(0, 5) for y in range(0, 5) if x >= y]
