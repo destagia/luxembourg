@@ -15,13 +15,14 @@ class ActionValue(Chain):
         http://docs.chainer.org/en/stable/reference/links.html#convolution2d
         """
         super(ActionValue, self).__init__(
-            l1=F.Linear(15, 1000),
-            l2=F.Linear(1000, 1000),
-            l3=F.Linear(1000, 1000),
-            l4=F.Linear(1000, 1000),
-            l5=F.Linear(1000, n_act))
+            l1=F.Convolution2D(1,  32, ksize=3, pad=1, nobias=False, wscale=np.sqrt(2)),
+            l2=F.Convolution2D(32, 64, ksize=3, pad=1, nobias=False, wscale=np.sqrt(2)),
+            l3=F.Convolution2D(64, 64, ksize=3, pad=1, nobias=False, wscale=np.sqrt(2)),
+            l4=F.Linear(1600, 512),
+            q_value=F.Linear(512, n_act,
+                             initialW=(1.0 * np.random.randn(n_act, 512).astype(np.float32))))
 
-    def action_probability(self, state):
+    def q_function(self, state):
         """
         The param `state` is the collection.
         It has the value which indicate whether or not corresponding point is selected
@@ -34,4 +35,4 @@ class ActionValue(Chain):
         h2 = F.relu(self.l2(h1))
         h3 = F.relu(self.l3(h2))
         h4 = F.relu(self.l4(h3))
-        return self.l2(h4)
+        return self.q_value(h4)
