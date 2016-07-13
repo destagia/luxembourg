@@ -23,7 +23,7 @@ class MonteCarloAiPlayer(RandomAiPlayer):
             stub_board.draw_line(self, line)
 
             points_count = len(stub_board.get_empty_points())
-            epoc_count =  (15 - points_count) * 100
+            epoc_count =  (15 - points_count) * 10
             if points_count > 1:
                 for _ in range(0, epoc_count):
                     epoc_board = Board(board=stub_board)
@@ -43,7 +43,7 @@ class MonteCarloAiPlayer(RandomAiPlayer):
             candidates.append((line, win_count))
 
         candidates.sort(key=lambda candidate: -candidate[1])
-        print(candidates)
+        # print(candidates)
         return candidates[0][0]
 
     def on_lost_game(self):

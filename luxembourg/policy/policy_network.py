@@ -3,6 +3,7 @@ from chainer import Variable, cuda, Function, Variable, optimizers, serializers
 import chainer.functions as F
 import numpy as np
 import random
+import copy
 
 class PolicyNetwork:
 
@@ -20,12 +21,12 @@ class PolicyNetwork:
         state = Variable(state)
 
         probabilities = self.__function(state)
-        print("Probabilities")
-        print(probabilities.data[0])
+        # print("Probabilities")
+        # print(probabilities.data[0])
         cursor = random.uniform(0, sum(probabilities.data[0]))
 
         prob_sum = 0.0
-        print(str(cursor) + " in " + str(sum(probabilities.data[0])))
+        # print(str(cursor) + " in " + str(sum(probabilities.data[0])))
         for i, val in enumerate(probabilities.data[0]):
             if prob_sum <= cursor and cursor < (prob_sum + val):
                 action = i
@@ -33,28 +34,23 @@ class PolicyNetwork:
 
         return action, probabilities
 
-    def learn_with_diff(self, probabilities, true_data):
-        p_len = len(probabilities.data[0])
-        t_len = len(true_data)
-        if p_len != t_len:
-            raise RuntimeError('length is invalid : probabilities=' + str(p_len) + ", true_data=" + str(t_len))
-        self.__function.zerograds()
+    def learn_with_diff(self, probabilities, action):
         y = probabilities
-        t = Variable(np.asarray([true_data]).astype(np.float32))
-        print("y")
-        print(y.data)
-        print("true")
-        print(t.data)
-        print((y - t).debug_print())
-        print((y - t).data)
-        loss = F.relu(y - t)
-        print(loss.debug_print())
-        loss.backward()
-        print("DEBUG")
-        print(loss.debug_print())
-        # self.__optimizer.update()
+        self.__optimizer.update(LoseLossFunction(), y, action)
 
-    def learn_with_cross_entropy(self, probabilities, true_data):
+    def learn_with_cross_entropy(self, probabilities, action):
         y = probabilities
-        t = Variable(np.asarray(true_data).astype(np.int32))
-        self.__optimizer.update(F.softmax_cross_entropy, y, t)
+        self.__optimizer.update(WonLossFunction(), y, action)
+
+class WonLossFunction():
+    def __call__(self, y, action):
+        t = Variable(np.asarray([action]).astype(np.int32))
+        return -F.softmax_cross_entropy(y, t)
+
+class LoseLossFunction():
+    def __call__(self, y, action):
+        t = Variable(np.asarray([action]).astype(np.int32))
+        result = F.sum(F.select_item(F.log(F.softmax(y)), t)) / len(y.data)
+        # print("loss" + str(result.data))
+        return result
+

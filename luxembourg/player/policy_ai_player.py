@@ -38,14 +38,15 @@ class PolicyAiPlayer:
             selected_line = self.lines[action]
             stub_board = Board(board=self.__board)
             try:
-                print(action)
+                # print("Action : " + str(action))
                 stub_board.draw_line(self, selected_line)
             except:
-                true_data = copy.copy(probabilities.data)[0]
-                true_data[action] = 0.0
-                self.network.learn_with_diff(probabilities, true_data)
+                self.network.learn_with_diff(probabilities, action)
                 continue
             break
+        print("Action : " + str(action))
+        print("Probabilities")
+        print(probabilities.data)
 
         self.add_history(PolicyHistory(state, action, probabilities))
         return selected_line
@@ -56,13 +57,11 @@ class PolicyAiPlayer:
 
     def on_lost_game(self):
         for data in self.__history:
-            true_data = copy.copy(probabilities.data)[0]
-            true_data[action] = 0.0
-            self.network.learn_with_diff(probabilities, true_data)
+            self.network.learn_with_diff(data.probabilities, data.action)
 
     def on_won_game(self):
         for data in self.__history:
-            self.network.learn_with_cross_entropy(data.probabilities, [data.action])
+            self.network.learn_with_cross_entropy(data.probabilities, data.action)
 
     def __create_lines(self):
         points = [Point(x, y) for x in range(0, 5) for y in range(0, 5) if x >= y]

@@ -1,12 +1,12 @@
 #!/usr/bin/env python
 
 from luxembourg        import Judge, Board
-from luxembourg.player import RandomAiPlayer, PolicyAiPlayer, ControllPlayer
+from luxembourg.player import RandomAiPlayer, PolicyAiPlayer, ControllPlayer, MonteCarloAiPlayer
 
 count = 0
 
 players = [
-    RandomAiPlayer(None, 'B'),
+    MonteCarloAiPlayer(None, 'B'),
     PolicyAiPlayer(None, 'A')
 ]
 
@@ -15,7 +15,7 @@ while True:
         board = Board(depth=5)
         judge = Judge(board)
 
-        print("- - Start New Game - -")
+        # print("- - Start New Game - -")
 
         for p in players:
             p.reset(board)
@@ -40,6 +40,6 @@ while True:
             players[0].on_lost_game()
             players[1].on_won_game()
 
-        print(str(count) + " / " + str(no + 1))
+        # print(str(count) + " / " + str(no + 1))
 
     players[0] = ControllPlayer("M")
